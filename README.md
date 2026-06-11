@@ -27,5 +27,5 @@ Added GET /juicereport reporting route
 Student 3 – Frontend Designer – Vivek 
 Created wireframes for all pages  
 Designed user interface layouts  
-Planned website navigation and user experience 
+Planned website navigation and user experience
 
