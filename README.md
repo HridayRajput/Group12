@@ -18,7 +18,7 @@ Designed Products, Customers, and Orders collections
 Created ER Diagram  
 Prepared database documentation  
 
-Student 2 – Backend Planner -Raman 
+Student 2 – Backend Planner -Raman
 Planned Express and TypeScript backend structure  
 Designed API routes for Products, Customers, and Orders  
 Created technical documentation  
