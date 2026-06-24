@@ -13,7 +13,7 @@ import mysql from "mysql2/promise";
 const pool = mysql.createPool({
   host: "localhost",       // where MySQL is running
   user: "root",             // your MySQL username
-  password: "Mathbond#1",              // your MySQL password
+  password: "",              // your MySQL password
   database: "group12_app",     // the database we created above
 });
 
