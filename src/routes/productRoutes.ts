@@ -65,4 +65,7 @@ router.delete("/:id", async (req: Request, res: Response) => {
   res.json({ message: "Product deleted successfully" });
 });
 
+//Test: Invoke-WebRequest -Method POST -Uri http://localhost:3001/products -ContentType "application/json" -Body '{"name":"Sample Product","category":"Electronics","brand":"BrandX","description":"A sample product description","price":99.99,"stockQuantity":50}'  
+//Test: Invoke-WebRequest -Method PUT -Uri http://localhost:3001/products/1 -ContentType "application/json" -Body '{"name":"Updated Product","category":"Electronics","brand":"BrandX","description":"An updated product description","price":89.99,"stockQuantity":30}'  
+//Test: Invoke-WebRequest -Method DELETE -Uri http://localhost:3001/products/1
 export default router;
