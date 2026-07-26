@@ -1,7 +1,7 @@
 Group project for OS web Group members - Vivek Chaudhary, Hriday Rajput, Raman Kumari
 
 SETUP: 
-- use database.txt in MYsql workbench to run user root
+- use schema.sql in MYsql workbench to run user root
 - open bash and enter "npm run dev" to run browser
 - open powershell and run test customer post/get
 
