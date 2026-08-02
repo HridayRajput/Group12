@@ -2,7 +2,10 @@ Group project for OS web Group members - Vivek Chaudhary, Hriday Rajput, Raman K
 
 SETUP: 
 - use schema.sql in MYsql workbench to run user root
-- open bash and enter "npm run dev" to run browser
+- optionally run seed.sql after schema.sql to load sample products/customers/orders for testing
+- copy .env.example to .env and fill in your local MySQL credentials
+- run "npm install"
+- open bash and enter "npm run dev" to run the server (http://localhost:3001)
 - open powershell and run test customer post/get
 
 Project description: This project is an Electronics shopping website. It will have a selection of products along with their descriptions, prices and checkout. It tracks orders, list of products in the store and customer information.
