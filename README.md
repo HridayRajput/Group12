@@ -12,6 +12,37 @@ Project description: This project is an Electronics shopping website. It will ha
 
 Technology -Using MySQL because it is flexible and connects to a pool db for each route
 
+## Milestone 4 – API Endpoints
+
+All routes are prefixed by their resource path (no `/api` prefix). Every write endpoint uses parameterized queries and returns JSON with the appropriate HTTP status code (200/201/400/404/500).
+
+### Products (`/products`)
+| Method | Path | Description |
+|---|---|---|
+| GET | /products | List all products |
+| GET | /products/:id | Get a single product |
+| POST | /products | Create a product |
+| PUT | /products/:id | Update a product |
+| DELETE | /products/:id | Delete a product |
+
+### Customers (`/customers`)
+| Method | Path | Description |
+|---|---|---|
+| GET | /customers | List all customers |
+| GET | /customers/:id | Get a single customer |
+| POST | /customers | Create a customer |
+| PUT | /customers/:id | Update a customer |
+| DELETE | /customers/:id | Delete a customer |
+
+### Orders (`/orders`)
+| Method | Path | Description |
+|---|---|---|
+| GET | /orders | List all orders |
+| GET | /orders/:id | Get a single order |
+| POST | /orders | Create an order |
+| PUT | /orders/:id | Update an order |
+| DELETE | /orders/:id | Delete an order |
+
 Team Responsibilities
 
 Student 1 – Database Designer - Hriday Selected MySQL database
