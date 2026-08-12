@@ -1,16 +1,22 @@
 import { Router, Request, Response } from 'express';
 import pool from "../db";
+import { requireAdmin } from "../auth";
 
 const router = Router();
 
 const isValidId = (id: unknown): id is string => typeof id === "string" && /^\d+$/.test(id);
 
-router.get('/', async (req: Request, res: Response) => {
+router.get('/', requireAdmin, async (req: Request, res: Response) => {
     const [rows] = await pool.query("SELECT * FROM Customers");
     res.json(rows);
 });
 
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('/lookup', async (req: Request, res: Response) => {
+    const [rows] = await pool.query("SELECT customerId, firstName, lastName FROM Customers ORDER BY firstName ASC");
+    res.json(rows);
+});
+
+router.get('/:id', requireAdmin, async (req: Request, res: Response) => {
     const { id } = req.params;
     if (!isValidId(id)) {
         return res.status(400).json({ error: "Invalid customer id" });
@@ -26,7 +32,7 @@ router.get('/:id', async (req: Request, res: Response) => {
     res.json(customers[0]);
 });
 
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', requireAdmin, async (req: Request, res: Response) => {
     const { firstName, lastName, email, phone, address } = req.body;
 
     if (!firstName || !lastName || !email) {
@@ -47,7 +53,7 @@ router.post('/', async (req: Request, res: Response) => {
     }
 });
 
-router.put('/:id', async (req: Request, res: Response) => {
+router.put('/:id', requireAdmin, async (req: Request, res: Response) => {
     const { id } = req.params;
     const { firstName, lastName, email, phone, address } = req.body;
 
@@ -77,7 +83,7 @@ router.put('/:id', async (req: Request, res: Response) => {
     }
 });
 
-router.delete('/:id', async (req: Request, res: Response) => {
+router.delete('/:id', requireAdmin, async (req: Request, res: Response) => {
     const { id } = req.params;
 
     if (!isValidId(id)) {

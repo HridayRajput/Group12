@@ -1,0 +1,61 @@
+Group 12 - Electronics Store REST API and SPA
+Work Division / Responsibility Plan (Milestones 3-5)
+
+Team: Hriday Rajput, Raman Kumari, Vivek Chaudhary
+
+============================================================
+Milestone 3 and 4 ownership
+============================================================
+Hriday Rajput
+- Designed the MySQL schema for Products, Customers, and Orders.
+- Built the database pool connection in `src/db.ts`.
+- Implemented the Products CRUD endpoints.
+- Explained schema design, FK constraints, and parameterized queries.
+
+Raman Kumari
+- Planned the Express + TypeScript server structure.
+- Implemented the Customers CRUD endpoints.
+- Wired middleware, CORS, and server-level error handling.
+- Explained backend structure and route handling.
+
+Vivek Chaudhary
+- Implemented the Orders CRUD endpoints.
+- Wrote the seed data used for testing.
+- Prepared the Milestone 5 frontend wireframe images.
+- Explained order validation and foreign-key handling.
+
+============================================================
+Milestone 5 ownership
+============================================================
+Hriday Rajput
+- Added the `Users` table and hashed demo accounts.
+- Implemented JWT cookie authentication middleware.
+- Added the requireAdmin authorization middleware and locked down
+  Products/Customers/Orders write routes by role.
+- Owns the Products panel in the SPA (admin manage table + member
+  read-only catalog view).
+
+Raman Kumari
+- Implemented the login/logout/register flow and `/auth` routes.
+- Built the protected route shell and role-aware dashboard navigation.
+- Added the admin-only Users management panel and role-toggle endpoint.
+- Updated the documentation and README setup instructions.
+
+Vivek Chaudhary
+- Built the Orders panel in the SPA (admin full CRUD, member can
+  place orders only).
+- Added the AI product-description component.
+- Styled the SPA with Tailwind CSS (Admin/Member theming, responsive
+  layout, product cards).
+- Organized the wireframe assets in `Images/`.
+
+============================================================
+Shared responsibilities
+============================================================
+- All members reviewed and tested the CRUD endpoints, the login
+  flow, and both the Admin and Member dashboards.
+- Each member is prepared to explain at least one backend feature
+  and one frontend feature.
+- The repository includes secure authentication, role-based
+  authorization (admin vs member), a React SPA with two distinct
+  dashboards, and AI integration for the Milestone 5 demo.
