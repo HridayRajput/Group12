@@ -15,7 +15,15 @@ INSERT INTO Customers (firstName, lastName, email, phone, address) VALUES
 ('Raman', 'Kumari', 'raman.kumari@example.com', '416-555-0102', '45 Oak Avenue, Toronto, ON'),
 ('Vivek', 'Chaudhary', 'vivek.chaudhary@example.com', '416-555-0103', '78 Pine Road, Mississauga, ON'),
 ('Priya', 'Sharma', 'priya.sharma@example.com', '647-555-0104', '9 Birch Lane, Brampton, ON'),
-('John', 'Doe', 'john.doe@example.com', '905-555-0105', '123 Main St, Hamilton, ON');
+('John', 'Doe', 'john.doe@example.com', '905-555-0105', '123 Main St, Hamilton, ON'),
+('User', 'Panel', 'user@example.com', '555-555-0106', '1 Member Way, Ottawa, ON');
+
+-- Passwords: admins -> Admin@123, member -> User@123 (see README).
+INSERT INTO Users (fullName, username, email, passwordHash, role, customerId) VALUES
+('Hriday Rajput', 'hridayrajput', 'hriday.rajput@example.com', '$2b$10$f72O5KEV20v0QmAtFu/ZfOB5Goiv6LayDVtnh3QYuOinU8t4dBtOq', 'admin', 1),
+('Raman Kumari', 'ramankumaree202-collab', 'raman.kumari@example.com', '$2b$10$f72O5KEV20v0QmAtFu/ZfOB5Goiv6LayDVtnh3QYuOinU8t4dBtOq', 'admin', 2),
+('Vivek Chaudhary', 'VivekChaudhary880', 'vivek.chaudhary@example.com', '$2b$10$f72O5KEV20v0QmAtFu/ZfOB5Goiv6LayDVtnh3QYuOinU8t4dBtOq', 'admin', 3),
+('User Panel', 'userpanel', 'user@example.com', '$2b$10$o4Qdh3GYE.UPRhAvcBs1J.NyowypnpG0cdNpSrCgb00Yn6idY/aDO', 'member', 6);
 
 INSERT INTO Orders (customerId, productId, quantity, totalPrice) VALUES
 (1, 1, 2, 49.98),

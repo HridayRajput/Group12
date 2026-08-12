@@ -20,6 +20,21 @@ CREATE TABLE Customers (
     address VARCHAR(255)
 );
 
+CREATE TABLE Users (
+    userId INT AUTO_INCREMENT PRIMARY KEY,
+    fullName VARCHAR(100) NOT NULL,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    passwordHash VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL DEFAULT 'member',
+    customerId INT NULL,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_user_customer
+        FOREIGN KEY (customerId)
+        REFERENCES Customers(customerId)
+);
+
 CREATE TABLE Orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     customerId INT NOT NULL,

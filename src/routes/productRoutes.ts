@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
 import pool from "../db";
+import { requireAdmin } from "../auth";
 
 const router = Router();
 
@@ -26,7 +27,7 @@ router.get("/:id", async (req: Request, res: Response) => {
   res.json(products[0]);
 });
 
-router.post("/", async (req: Request, res: Response) => {
+router.post("/", requireAdmin, async (req: Request, res: Response) => {
   const { name, category, brand, description, price, stockQuantity } = req.body;
 
   if (!name || price === undefined || stockQuantity === undefined) {
@@ -50,7 +51,7 @@ router.post("/", async (req: Request, res: Response) => {
   });
 });
 
-router.put("/:id", async (req: Request, res: Response) => {
+router.put("/:id", requireAdmin, async (req: Request, res: Response) => {
   const { id } = req.params;
   const { name, category, brand, description, price, stockQuantity } = req.body;
 
@@ -73,7 +74,7 @@ router.put("/:id", async (req: Request, res: Response) => {
   res.json({ productId: Number(id), name, category, brand, description, price, stockQuantity });
 });
 
-router.delete("/:id", async (req: Request, res: Response) => {
+router.delete("/:id", requireAdmin, async (req: Request, res: Response) => {
   const { id } = req.params;
 
   if (!isValidId(id)) {
