@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import pool from "../db";
+import { requireAdmin } from "../auth";
 
 const router = Router();
 
@@ -27,7 +28,15 @@ router.get('/:id', async (req: Request, res: Response) => {
 });
 
 router.post('/', async (req: Request, res: Response) => {
-    const { customerId, productId, quantity, totalPrice } = req.body;
+    const { productId, quantity, totalPrice } = req.body;
+    let { customerId } = req.body;
+
+    if (req.user?.role !== "admin") {
+        if (!req.user?.customerId) {
+            return res.status(400).json({ error: "Your account is not linked to a customer profile" });
+        }
+        customerId = req.user.customerId;
+    }
 
     if (!customerId || !productId || !quantity || totalPrice === undefined) {
         return res.status(400).json({ error: "customerId, productId, quantity and totalPrice are required" });
@@ -47,7 +56,7 @@ router.post('/', async (req: Request, res: Response) => {
     }
 });
 
-router.put('/:id', async (req: Request, res: Response) => {
+router.put('/:id', requireAdmin, async (req: Request, res: Response) => {
     const { id } = req.params;
     const { customerId, productId, quantity, totalPrice } = req.body;
 
@@ -77,7 +86,7 @@ router.put('/:id', async (req: Request, res: Response) => {
     }
 });
 
-router.delete('/:id', async (req: Request, res: Response) => {
+router.delete('/:id', requireAdmin, async (req: Request, res: Response) => {
     const { id } = req.params;
 
     if (!isValidId(id)) {
