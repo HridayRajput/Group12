@@ -113,8 +113,8 @@ export default function AiAssistant() {
       {tool === "description" ? (
         <>
           <p className="text-sm text-slate-500">
-            Uses OpenAI when{" "}
-            <code className="rounded bg-blue-50 px-1.5 py-0.5 text-blue-700">OPENAI_API_KEY</code> is
+            Calls an AI provider when{" "}
+            <code className="rounded bg-blue-50 px-1.5 py-0.5 text-blue-700">AI_API_KEY</code> is
             set, otherwise it shows a local fallback so the page stays usable.
           </p>
 
@@ -168,7 +168,7 @@ export default function AiAssistant() {
           {description ? (
             <article className="rounded-xl border border-slate-200 bg-slate-50 p-4">
               <p className="text-xs font-bold uppercase tracking-wider text-blue-700">
-                {source === "openai" ? "OpenAI response" : "Fallback response"}
+                {source === "ai" ? "AI response" : "Fallback response"}
               </p>
               <p className="mt-2 text-slate-700">{description}</p>
             </article>
@@ -221,7 +221,7 @@ export default function AiAssistant() {
           {recommendation ? (
             <article className="rounded-xl border border-slate-200 bg-slate-50 p-4">
               <p className="text-xs font-bold uppercase tracking-wider text-blue-700">
-                {recommendSource === "openai" ? "OpenAI pick" : "Recommended pick"}
+                {recommendSource === "ai" ? "AI pick" : "Recommended pick"}
               </p>
               <p className="mt-2 text-slate-700">{recommendation}</p>
 

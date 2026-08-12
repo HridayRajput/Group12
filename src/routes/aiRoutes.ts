@@ -3,20 +3,27 @@ import pool from "../db";
 
 const router = Router();
 
-async function callOpenAI(prompt: string, systemPrompt: string): Promise<string | null> {
-  if (!process.env.OPENAI_API_KEY) {
+// Works with any OpenAI-compatible chat completions endpoint (OpenAI, Groq, etc.)
+// via env vars, so switching providers never needs a code change.
+async function callAI(prompt: string, systemPrompt: string): Promise<string | null> {
+  const apiKey = process.env.AI_API_KEY;
+
+  if (!apiKey) {
     return null;
   }
 
+  const baseUrl = process.env.AI_API_BASE_URL || "https://api.openai.com/v1/chat/completions";
+  const model = process.env.AI_MODEL || "gpt-4o-mini";
+
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch(baseUrl, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: process.env.OPENAI_MODEL || "gpt-4o-mini",
+        model,
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: prompt },
@@ -59,11 +66,11 @@ router.post("/product-description", async (req: Request, res: Response) => {
 
   const fallbackDescription = `${productName} is a ${category || "versatile"} ${brand ? `from ${brand}` : "option"} designed to deliver reliable everyday performance${features ? ` with ${features}` : ""}.`;
 
-  const description = await callOpenAI(prompt, "You write concise retail product descriptions.");
+  const description = await callAI(prompt, "You write concise retail product descriptions.");
 
   return res.json({
     description: description || fallbackDescription,
-    source: description ? "openai" : "fallback",
+    source: description ? "ai" : "fallback",
     prompt,
   });
 });
@@ -121,7 +128,7 @@ router.post("/recommend", async (req: Request, res: Response) => {
 
   const fallbackRecommendation = `Based on your filters, the ${bestMatch.name}${bestMatch.brand ? ` by ${bestMatch.brand}` : ""} at $${Number(bestMatch.price).toFixed(2)} is the best match currently in stock.`;
 
-  const recommendation = await callOpenAI(
+  const recommendation = await callAI(
     prompt,
     "You are a helpful electronics store shopping assistant who recommends real in-stock products."
   );
@@ -129,7 +136,7 @@ router.post("/recommend", async (req: Request, res: Response) => {
   return res.json({
     recommendation: recommendation || fallbackRecommendation,
     product: bestMatch,
-    source: recommendation ? "openai" : "fallback",
+    source: recommendation ? "ai" : "fallback",
   });
 });
 

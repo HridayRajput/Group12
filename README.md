@@ -31,8 +31,9 @@ recommendation assistant.
 | `PORT` | Backend port, default `3001` |
 | `CLIENT_ORIGIN` | Frontend origin for cookie-based auth, default `http://localhost:5173` |
 | `JWT_SECRET` | Required secret used to sign session tokens |
-| `OPENAI_API_KEY` | Optional key for the AI description/recommendation helper |
-| `OPENAI_MODEL` | Optional OpenAI model name |
+| `AI_API_BASE_URL` | Chat completions endpoint for any OpenAI-compatible provider (Groq, OpenAI, etc.) |
+| `AI_API_KEY` | Optional key for the AI description/recommendation helper. Leave empty to use the local fallback |
+| `AI_MODEL` | Model name for the configured provider |
 
 ## Run locally
 
